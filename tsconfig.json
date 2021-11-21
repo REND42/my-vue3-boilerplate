@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "noImplicitAny": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "suppressImplicitAnyIndexErrors": true,  // 允许字符串下标表达式
+    "lib": ["esnext", "dom"],
+    "baseUrl": ".",     // 解析非相对模块的基础地址，默认是当前目录，防止引入文件报错
+    "paths": {          // 路径映射，相对于baseUrl
+      "@/*": ["src/*"]
+    },
+    "skipLibCheck": true,
+    "types": ["element-plus/global"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+}

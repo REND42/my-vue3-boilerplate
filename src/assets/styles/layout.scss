@@ -1,0 +1,67 @@
+// 设置全局布局样式文件
+
+@mixin appBaseBox {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.set-common-head-fixed-container {
+  height: 90px;
+}
+
+// 顶部菜单盒子
+.common-head-fixed-container {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 9;
+}
+
+.show-mobile {
+  padding: 0 5px;
+  background-color: #2c3e50;
+  .same-cell {
+    color: #fff;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .show-pc {
+    display: none;
+  }
+  .show-mobile {
+    display: block;
+    @include appBaseBox();
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .show-pc {
+    display: none;
+  }
+  .show-mobile {
+    display: block;
+    @include appBaseBox();
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .show-pc {
+    display: block;
+    background-color: orange;
+  }
+  .show-mobile {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .show-pc {
+    display: block;
+    background-color: yellow;
+  }
+  .show-mobile {
+    display: none;
+  }
+}
