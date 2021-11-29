@@ -41,8 +41,8 @@ class AxiosHttpRequest implements BaseType {
   timeout: number
 
   constructor() {
-    // this.baseURL = import.meta.env.VITE_APP_BASE_URL
-    this.baseURL = 'http://localhost:3002/api'
+    this.baseURL = import.meta.env.VITE_APP_BASE_URL
+    // this.baseURL = 'http://localhost:3002/api'
     this.timeout = 1500
   }
 
@@ -89,7 +89,6 @@ class AxiosHttpRequest implements BaseType {
         config.params = {}
         config.url = url
       }
-      console.log(4444, config)
       return config
     }, (error: any) => {
       return Promise.reject(error)
@@ -126,11 +125,13 @@ class AxiosHttpRequest implements BaseType {
       }
     }, (error: AxiosError) => {
       let { message } = error
+      console.log(2222, error, )
       if(message == 'Network Error') {
         message = '接口连接异常'
       } else if(message.includes('timeout')) {
         message = '接口请求超时'
       } else if(message.includes('Request failed with status code')) {
+        // message = '接口' + message.substr(message.length - 3) + '异常'
         message = '接口' + message.substr(message.length - 3) + '异常'
       }
       ElMessage.error({

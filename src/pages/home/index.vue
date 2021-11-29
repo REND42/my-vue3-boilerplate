@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-  import { getAllDoodles, getDoodleNum } from '@/script/api';
+  import { getAllDoodles, getDoodleNum, register } from '@/script/api';
   import { onMounted, reactive } from 'vue';
 
   const mode = import.meta.env
@@ -18,11 +18,13 @@
   })
 
   onMounted(() => {
-    getAllDoodles(params).then(res => {
-      console.log(433, res)
-    })
-    // getDoodleNum().then(res => {
-    //   console.log(888, res)
+    // let params = {
+    //   "email": "111@xx.com",
+    //   "username": "11xxx",
+    //   "password": "123",
+    // }
+    // register(params).then(res => {
+    //   console.log(res)
     // })
   })
 

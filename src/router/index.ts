@@ -15,7 +15,8 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '首页',
           icon: '',
-          index: '1'
+          index: '1',
+          auth: true
         }
       },
       {
@@ -26,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '编程',
           icon: '',
-          index: '2'
+          index: '4'
         },
         children: [
           {
@@ -58,11 +59,33 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
           title: '关于',
           icon: '',
-          index: '3'
+          index: '5'
         }
       }
     ]
-  }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    hidden: false,
+    component: () => import('@/pages/login/index.vue'),
+    meta: {
+      title: '登录',
+      icon: '',
+      index: '2'
+    }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    hidden: false,
+    component: () => import('@/pages/register/index.vue'),
+    meta: {
+      title: '注册',
+      icon: '',
+      index: '3'
+    }
+  },
 ]
 
 const router = createRouter(
