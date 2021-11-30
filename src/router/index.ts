@@ -74,6 +74,14 @@ const routes: Array<RouteRecordRaw> = [
       icon: '',
       index: '2'
     }
+  }, {
+    path: '/:pathMatch(.*)*',
+    name: '404',
+    component: () => import('@/pages/404/index.vue'),
+    meta: {
+      title: '404',
+      index: '3'
+    }
   }
 ]
 
