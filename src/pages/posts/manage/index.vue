@@ -1,5 +1,5 @@
 <template>
-  <div class="common-layout-container">后端</div>
+  <h1>文章管理</h1>
 </template>
 
 <script lang="ts" setup>

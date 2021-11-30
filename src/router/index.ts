@@ -14,52 +14,52 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/pages/home/index.vue'),
         meta: {
           title: '首页',
-          icon: '',
+          icon: 'Edit',
           index: '1',
           auth: true
         }
       },
       {
-        path: '/program',
-        name: 'program',
+        path: '/post',
+        name: 'post',
         hidden: false,
-        component: () => import('@/pages/program/index.vue'),
+        component: () => import('@/pages/posts/index.vue'),
         meta: {
-          title: '编程',
-          icon: '',
-          index: '4'
+          title: '文章管理',
+          icon: 'Document',
+          index: '2'
         },
         children: [
           {
-            path: '/program/frontend',
-            name: 'program-frontend',
-            component: () => import('@/pages/program/frontend/index.vue'),
+            path: '/posts/create',
+            name: 'posts-create',
+            component: () => import('@/pages/posts/create/index.vue'),
             meta: {
-              title: '前端',
-              icon: '',
+              title: '创建文章',
+              icon: 'Edit',
               index: '2-1'
             }
           },
           {
-            path: '/program/backend',
-            name: 'program-backend',
-            component: () => import('@/pages/program/backend/index.vue'),
+            path: '/posts/manage',
+            name: 'posts-manage',
+            component: () => import('@/pages/posts/manage/index.vue'),
             meta: {
-              title: '后端',
-              icon: '',
+              title: '文章管理',
+              icon: 'Management',
               index: '2-2'
             }
           }
         ]
       },
       {
-        path: '/about',
-        name: 'about',
-        component: () => import('@/pages/about/index.vue'),
+        path: '/users',
+        name: 'users',
+        component: () => import('@/pages/users/index.vue'),
         meta: {
-          title: '关于',
-          icon: '',
-          index: '5'
+          title: '用户管理',
+          icon: 'Avatar',
+          index: '3'
         }
       }
     ]
@@ -74,18 +74,7 @@ const routes: Array<RouteRecordRaw> = [
       icon: '',
       index: '2'
     }
-  },
-  {
-    path: '/register',
-    name: 'register',
-    hidden: false,
-    component: () => import('@/pages/register/index.vue'),
-    meta: {
-      title: '注册',
-      icon: '',
-      index: '3'
-    }
-  },
+  }
 ]
 
 const router = createRouter(

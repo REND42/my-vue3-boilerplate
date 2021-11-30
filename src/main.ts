@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import ElementPlus, { ElNotification } from 'element-plus'
 import 'element-plus/dist/index.css'
+import "@/assets/styles/body.scss";
 import * as ElIcons from "@element-plus/icons";
 // import { Edit, Share } from "@element-plus/icons"
 import { start, close } from "@/script/utils/nprogress";

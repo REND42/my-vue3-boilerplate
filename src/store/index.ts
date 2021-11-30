@@ -1,8 +1,16 @@
 import { InjectionKey } from "vue";
+import { RouteLocationNormalized } from "vue-router";
 import { useStore as baseUseStore, createStore, Store } from "vuex";
+
+interface Tag {
+  title?: string,
+  name: string,
+  path: string
+}
 
 interface State {
   currentMenu: string,    //当前菜单
+  tagList: Array<Tag>,
   token: string | null
 }
 
@@ -12,6 +20,7 @@ export const key: InjectionKey<Store<State>> = Symbol()
 export const store = createStore({
   state: {
     currentMenu: localStorage.getItem('currentMenu') || '1',
+    tagList: [],
     token: localStorage.getItem('token')
   },
   getters: {
@@ -38,7 +47,16 @@ export const store = createStore({
     SET_TOKEN(state: State, token: string) {
       localStorage.setItem('token', 'Bearer '+ token)
       state.token = token
-    }
+    },
+    SET_TAG_ITEM(state: State, item: any) {
+      state.tagList.push(item)
+    },
+    DELETE_TAG_ITEM(state: State, item: any) {
+      state.tagList.splice(item.index, 1)
+    },
+    CLEAR_TAGLIST(state: State) {
+      state.tagList = []
+    },
   },
   actions: {}
 })

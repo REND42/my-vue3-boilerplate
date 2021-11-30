@@ -1,5 +1,5 @@
 <template>
-  <div class="common-layout-container">前端</div>
+  <h1>创建文章</h1>
 </template>
 
 <script lang="ts" setup>
