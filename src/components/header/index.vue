@@ -7,7 +7,7 @@
             <el-icon :size="20"><bell /></el-icon>
         </div>
         <div class="user-avatar">
-          <img src="@/assets/logo.png" alt="">
+          <img src="@/assets/images/avatar.jpg" alt="">
         </div>
         <el-dropdown class="user-name" size="small" trigger="click" @command="handleCommand">
           <span class="el-dropdown-link">

@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { ElMessage } from "element-plus";
+import { useStore } from "@/store";
 
 interface BaseType {
   baseURL: string
@@ -19,6 +20,8 @@ interface AxiosRequestType {
   value?: any
   cancelToken?: any
 }
+
+const store = useStore()
 
 // 取消重复请求
 const CancelToken = axios.CancelToken
@@ -65,7 +68,10 @@ class AxiosHttpRequest implements BaseType {
       })
       // 全局loading
       // 请求头携带token
-      // config.headers['Authorization'] = 'Bearer' + 'yourtoken'
+      const token = localStorage.getItem('token')
+      if(token) {
+        config.headers['Authorization'] = `Bearer ${ token }` 
+      } 
       config.headers['Content-Type'] = 'application/json;charset=utf-8'
       config.headers['Access-Control-Allow-Origin'] = "*"
       if(config.method === 'get' && config.params) {

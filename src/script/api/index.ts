@@ -34,3 +34,11 @@ export const login = (params: object) => {
     data: params
   })
 }
+
+export const getUserInfo = () => {
+  return http.request({
+    baseURL: BASEURL,
+    url: '/auth',
+    method: 'GET',
+  })
+}

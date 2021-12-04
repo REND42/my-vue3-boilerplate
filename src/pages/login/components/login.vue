@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts" setup>
-import { login } from '@/script/api';
+import { login, getUserInfo } from '@/script/api';
 import { ElMessage } from 'element-plus';
 import { Lock, User, Message } from '@element-plus/icons'
 import { reactive, ref } from 'vue';
@@ -83,6 +83,9 @@ const submitLogin = () => {
       ElMessage.success('登录成功')
       router.push('/')
 
+      let userInfo = await getUserInfo()
+      console.log(8888, userInfo)
+      store.commit('SET_USERINFO', userInfo)
     } else {
       console.log('error submit!!')
       return false

@@ -11,7 +11,8 @@ interface Tag {
 interface State {
   currentMenu: string,    //当前菜单
   tagList: Array<Tag>,
-  token: string | null
+  token: string | null,
+  userInfo: object
 }
 
 // 定义 injection key
@@ -21,7 +22,8 @@ export const store = createStore({
   state: {
     currentMenu: localStorage.getItem('currentMenu') || '1',
     tagList: [],
-    token: localStorage.getItem('token')
+    token: localStorage.getItem('token'),
+    userInfo: {}
   },
   getters: {
     getCurrentMenu: (state: State) => {
@@ -29,6 +31,9 @@ export const store = createStore({
     },
     getToken: (state: State) => {
       return state.token
+    },
+    getUserInfo: (state: State) => {
+      return state.userInfo
     }
   },
   mutations: {
@@ -57,6 +62,9 @@ export const store = createStore({
     CLEAR_TAGLIST(state: State) {
       state.tagList = []
     },
+    SET_USERINFO(state: State, userInfo) {
+      state.userInfo = userInfo
+    }
   },
   actions: {}
 })
