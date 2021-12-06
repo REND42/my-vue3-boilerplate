@@ -79,7 +79,7 @@ const submitLogin = () => {
       let res = await login(loginForm)
       let token = res['access_token']
       store.commit('LOGIN', token)
-      console.log(1123, res['access_token'])
+      // console.log(1123, res['access_token'])
       ElMessage.success('登录成功')
       router.push('/')
 

@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 import { ElMessage } from "element-plus";
 import { useStore } from "@/store";
+import { getToken } from "./cookie";
 
 interface BaseType {
   baseURL: string
@@ -68,10 +69,10 @@ class AxiosHttpRequest implements BaseType {
       })
       // 全局loading
       // 请求头携带token
-      const token = localStorage.getItem('token')
+      const token = getToken()
       if(token) {
         config.headers['Authorization'] = `Bearer ${ token }` 
-      } 
+      }
       config.headers['Content-Type'] = 'application/json;charset=utf-8'
       config.headers['Access-Control-Allow-Origin'] = "*"
       if(config.method === 'get' && config.params) {
@@ -102,47 +103,46 @@ class AxiosHttpRequest implements BaseType {
     
     // 响应拦截
     instance.interceptors.response.use((res: any) => {
-      console.log(3333, res)
       // 取消重复请求
       removeSource(res.config)
       // 未设置状态码则默认成功状态
-      const code = res.data['code'] || 200
-      // 获取错误信息
-      let msg = res.data['msg'] || ''
-      switch (code) {
-        case '401':
-          msg = '认证失败，无法访问系统资源'
-          break
-        case '403':
-          msg = '当前操作没有权限'
-          break
-        case '404':
-          msg = '访问资源不存在'
-          break
-        default:
-          msg = '未知错误'
-          break
-      }
-      if(code === 200) {
+      // const code = res.data['code'] || 200
+      // // 获取错误信息
+      // let msg = res.data['msg'] || ''
+      // switch (code) {
+      //   case '401':
+      //     msg = '认证失败，无法访问系统资源'
+      //     break
+      //   case '403':
+      //     msg = '当前操作没有权限'
+      //     break
+      //   case '404':
+      //     msg = '访问资源不存在'
+      //     break
+      //   default:
+      //     msg = '未知错误'
+      //     break
+      // }
+      // if(code === 200) {
         return Promise.resolve(res.data)
-      } else {
-        ElMessage.error(msg)
-        return Promise.reject(res.data)
-      }
+      // } else {
+      //   ElMessage.error(msg)
+      //   return Promise.reject(res.data)
+      // }
     }, (error: AxiosError) => {
-      let { message } = error
-      console.log(2222, error, )
-      if(message == 'Network Error') {
-        message = '接口连接异常'
-      } else if(message.includes('timeout')) {
-        message = '接口请求超时'
-      } else if(message.includes('Request failed with status code')) {
-        // message = '接口' + message.substr(message.length - 3) + '异常'
-        message = '接口' + message.substr(message.length - 3) + '异常'
-      }
+      let { response } = error
+      console.log(2222, error.response?.status, error.message, error.name)
+      // if(message == 'Network Error') {
+      //   message = '接口连接异常'
+      // } else if(message.includes('timeout')) {
+      //   message = '接口请求超时'
+      // } else if(message.includes('Request failed with status code')) {
+      //   // message = '接口' + message.substr(message.length - 3) + '异常'
+      //   message = '接口' + message.substr(message.length - 3) + '异常'
+      // }
       ElMessage.error({
-        message: message,
-        duration: 5 * 1000
+        message: error.response?.data,
+        duration: 3 * 1000
       })
       return Promise.reject(error)
     })

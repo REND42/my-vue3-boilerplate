@@ -1,10 +1,13 @@
 import Cookies from "js-cookie";
 
 export function setToken(token: string) {
-  return Cookies.set('token', token)
+  let expTime = new Date(new Date().getTime() + 3 * 60 * 1000)
+  return Cookies.set('token', token, {
+    expires: expTime
+  })
 }
 
-export function getToken() {
+export function getToken(): string | undefined {
   return Cookies.get('token')
 }
 

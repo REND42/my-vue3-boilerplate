@@ -11,7 +11,8 @@
         </div>
         <el-dropdown class="user-name" size="small" trigger="click" @command="handleCommand">
           <span class="el-dropdown-link">
-            admin
+            <!-- admin -->
+            {{ userinfo.username }}
             <el-icon class="el-icon--right">
               <arrow-down />
             </el-icon>
@@ -45,6 +46,9 @@ const handleCommand = (command: string) => {
     
   }
 }
+
+const userinfo = store.getters.getUserInfo
+console.log(999, userinfo)
 
 </script>
 
